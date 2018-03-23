@@ -32,6 +32,11 @@ ENV PATH=/opt/maven/bin/:/opt/gradle/bin/:$PATH
 
 ENV BUILDER_VERSION 1.0
 
+# set timze to "Asia/Shanghai"
+ENV TZ=Asia/Shanghai LC_ALL=en_US.UTF-8
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
 LABEL io.k8s.description="Platform for building Java (fatjar) applications with maven or gradle" \
       io.k8s.display-name="Java S2I builder 1.0" \
       io.openshift.expose-services="8080:http" \
